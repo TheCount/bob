@@ -41,7 +41,8 @@ static inline int bob_varint_decode(
   uint64_t *dest, uint8_t next, unsigned int count
 ) {
   if (count == 0) {
-    *dest = 0;
+    *dest = next % 0x80;
+    return (next >> 7);
   }
   if (((count == 9) && (next > 1)) || (count > 9)) {
     return -1;
@@ -49,6 +50,10 @@ static inline int bob_varint_decode(
   if (next & 0x80) {
     *dest |= ((uint64_t) next % 0x80) << (count * 7);
     return count + 1;
+  }
+  if (next == 0) {
+    /* invalid short form */
+    return -1;
   }
   *dest |= (uint64_t) next << (count * 7);
   return 0;
