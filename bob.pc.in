@@ -1,0 +1,12 @@
+prefix=@PKGCONFIG_PREFIX@
+exec_prefix=${prefix}/@PKGCONFIG_EXEC_PREFIX@
+includedir=${prefix}/@PKGCONFIG_INCLUDEDIR@
+libdir=${prefix}/@PKGCONFIG_LIBDIR@
+
+Name: @PKGCONFIG_NAME@
+Description: @PKGCONFIG_DESC@
+Version: @PKGCONFIG_VERSION@
+Cflags: -I${includedir}
+Cflags.private:
+Libs: -L${libdir} -l@PKGCONFIG_NAME@
+Libs.private:
