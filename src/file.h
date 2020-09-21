@@ -335,7 +335,7 @@ static inline int bob_file_read(struct BOBFile *file, void *buf, size_t count) {
  *  appropriately.
  */
 static inline int bob_file_read_varint(struct BOBFile *file, uint64_t *n) {
-  unsigned int count = 0;
+  int count = 0;
   do {
     uint8_t vbyte;
     if (bob_file_read(file, &vbyte, sizeof(vbyte)) != 0) {

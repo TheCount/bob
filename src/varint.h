@@ -38,13 +38,13 @@ static inline size_t bob_varint_encode(uint8_t *dest, uint64_t n) {
  *  On error, @c -1 is returned.
  */
 static inline int bob_varint_decode(
-  uint64_t *dest, uint8_t next, unsigned int count
+  uint64_t *dest, uint8_t next, int count
 ) {
   if (count == 0) {
     *dest = next % 0x80;
     return (next >> 7);
   }
-  if (((count == 9) && (next > 1)) || (count > 9)) {
+  if (((count == 9) && (next > 1)) || (count > 9) || (count < 0)) {
     return -1;
   }
   if (next & 0x80) {
