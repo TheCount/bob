@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.1)
 project(bob)
+enable_testing()
 
 # Version
 set(BOB_VERSION_MAJOR 0) # increases with incompatible API changes
@@ -30,3 +31,4 @@ add_definitions("-D_GNU_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64")
 
 # Build subdirs
 add_subdirectory(src)
+add_subdirectory(test)
